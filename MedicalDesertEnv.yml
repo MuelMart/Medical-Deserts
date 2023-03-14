@@ -1,23 +1,26 @@
 name: MedicalDesertEnv
 channels:
+  - conda-forge
   - defaults
 dependencies:
+  - affine=2.4.0=pyhd8ed1ab_0
   - appdirs=1.4.4=pyhd3eb1b0_0
   - attrs=22.1.0=py39haa95532_0
   - blas=1.0=mkl
   - blosc=1.21.3=h6c2663c_0
-  - boost-cpp=1.73.0=h2bbff1b_12
+  - boost-cpp=1.78.0=h9f4b32c_1
   - bottleneck=1.3.5=py39h080aedc_0
   - branca=0.6.0=py39haa95532_0
   - brotli=1.0.9=h2bbff1b_7
   - brotli-bin=1.0.9=h2bbff1b_7
   - brotlipy=0.7.0=py39h2bbff1b_1003
   - bzip2=1.0.8=he774522_0
-  - ca-certificates=2023.01.10=haa95532_0
-  - cairo=1.16.0=haedb8bc_4
-  - certifi=2022.12.7=py39haa95532_0
+  - ca-certificates=2022.12.7=h5b45459_0
+  - cairo=1.16.0=hd694305_1014
+  - census=0.8.17=pyhd8ed1ab_0
+  - certifi=2022.12.7=pyhd8ed1ab_0
   - cffi=1.15.1=py39h2bbff1b_3
-  - cfitsio=3.470=h2bbff1b_7
+  - cfitsio=4.2.0=h9ebe7e4_0
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
   - click=8.0.4=py39haa95532_0
   - click-plugins=1.1.1=pyhd3eb1b0_0
@@ -27,57 +30,73 @@ dependencies:
   - cryptography=39.0.1=py39h21b164f_0
   - curl=7.88.1=h2bbff1b_0
   - cycler=0.11.0=pyhd3eb1b0_0
-  - expat=2.4.9=h6c2663c_0
+  - expat=2.5.0=h1537add_0
   - fiona=1.9.1=py39hf11a4ad_0
   - folium=0.14.0=py39haa95532_0
-  - fontconfig=2.14.1=hc0defaf_1
+  - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
+  - font-ttf-inconsolata=3.000=h77eed37_0
+  - font-ttf-source-code-pro=2.038=h77eed37_0
+  - font-ttf-ubuntu=0.83=hab24e00_0
+  - fontconfig=2.14.2=hbde0cde_0
+  - fonts-conda-ecosystem=1=0
+  - fonts-conda-forge=1=0
   - fonttools=4.25.0=pyhd3eb1b0_0
   - freetype=2.12.1=ha860e81_0
   - freexl=1.0.6=h2bbff1b_0
-  - gdal=3.6.2=py39h36fb4bc_0
+  - future=0.18.3=pyhd8ed1ab_0
+  - gdal=3.6.3=py39h3be0312_0
   - geopandas=0.12.2=py39haa95532_0
   - geopandas-base=0.12.2=py39haa95532_0
-  - geos=3.8.0=h33f27b4_0
-  - geotiff=1.7.0=h4545760_0
+  - geos=3.11.1=h1537add_0
+  - geotiff=1.7.1=hb4c6682_7
+  - gettext=0.21.1=h5728263_0
   - giflib=5.2.1=h8cc25b3_3
-  - glib=2.69.1=h5dc1a3c_2
-  - hdf4=4.2.13=h712560f_2
-  - hdf5=1.10.6=h1756f20_1
+  - hdf4=4.2.15=h1334946_6
+  - hdf5=1.12.2=nompi_h57737ce_101
   - icc_rt=2022.1.0=h6049295_2
-  - icu=58.2=ha925a31_3
+  - icu=70.1=h0e60522_0
   - idna=3.4=py39haa95532_0
   - importlib_resources=5.2.0=pyhd3eb1b0_1
   - intel-openmp=2021.4.0=haa95532_3556
   - jinja2=3.1.2=py39haa95532_0
   - joblib=1.1.1=py39haa95532_0
-  - jpeg=9e=h2bbff1b_1
-  - kealib=1.5.0=hde4a422_0
+  - kealib=1.5.0=h61be68b_0
   - kiwisolver=1.4.4=py39hd77b12b_0
-  - krb5=1.19.4=h5b6d351_0
-  - lcms2=2.12=h83e58a3_0
-  - lerc=3.0=hd77b12b_0
-  - libboost=1.73.0=h6c2663c_12
+  - krb5=1.20.1=heb0366b_0
+  - lcms2=2.15=h3e3b177_1
+  - lerc=4.0.0=h63175ca_0
+  - libaec=1.0.6=h63175ca_1
   - libbrotlicommon=1.0.9=h2bbff1b_7
   - libbrotlidec=1.0.9=h2bbff1b_7
   - libbrotlienc=1.0.9=h2bbff1b_7
   - libcurl=7.88.1=h86230a5_0
   - libdeflate=1.17=h2bbff1b_0
   - libffi=3.4.2=hd77b12b_6
-  - libgdal=3.6.2=h11d7215_0
-  - libiconv=1.16=h2bbff1b_2
-  - libkml=1.3.0=h63940dd_6
-  - libnetcdf=4.8.1=h6685c40_2
+  - libgdal=3.6.3=h1443b5b_0
+  - libglib=2.74.1=he8f3873_1
+  - libiconv=1.17=h8ffe710_0
+  - libjpeg-turbo=2.1.5.1=hcfcfb64_0
+  - libkml=1.3.0=hf2ab4e4_1015
+  - libnetcdf=4.9.1=nompi_h83fa41b_102
   - libpng=1.6.39=h8cc25b3_0
-  - libpq=12.9=hb652d5d_3
+  - libpq=15.2=ha9684e8_0
+  - librttopo=1.1.0=he22b5cd_12
   - libspatialindex=1.9.3=h6c2663c_0
-  - libspatialite=4.3.0a=h14feca5_21
-  - libssh2=1.10.0=hcd4344a_0
-  - libtiff=4.5.0=h6c2663c_2
-  - libwebp=1.2.4=hbc33d0d_1
-  - libwebp-base=1.2.4=h2bbff1b_1
-  - libxml2=2.9.14=h0ad7f3c_0
-  - libzip=1.8.0=h49b8836_0
+  - libspatialite=5.0.1=hfdcade0_23
+  - libsqlite=3.40.0=hcfcfb64_0
+  - libssh2=1.10.0=h9a1e1f7_3
+  - libtiff=4.5.0=hc3b8658_5
+  - libwebp-base=1.3.0=hcfcfb64_0
+  - libxcb=1.13=hcd874cb_1004
+  - libxml2=2.10.3=hc3477c8_0
+  - libzip=1.9.2=h519de47_1
+  - libzlib=1.2.13=hcfcfb64_4
   - lz4-c=1.9.4=h2bbff1b_0
+  - m2w64-gcc-libgfortran=5.3.0=6
+  - m2w64-gcc-libs=5.3.0=7
+  - m2w64-gcc-libs-core=5.3.0=7
+  - m2w64-gmp=6.1.0=2
+  - m2w64-libwinpthread-git=5.0.0.4634.697f757=2
   - mapclassify=2.5.0=py39haa95532_0
   - markupsafe=2.1.1=py39h2bbff1b_0
   - matplotlib-base=3.7.1=py39hf11a4ad_0
@@ -85,57 +104,66 @@ dependencies:
   - mkl-service=2.4.0=py39h2bbff1b_0
   - mkl_fft=1.3.1=py39h277e83a_0
   - mkl_random=1.2.2=py39hf11a4ad_0
+  - msys2-conda-epoch=20160418=1
   - munch=2.5.0=pyhd3eb1b0_0
   - munkres=1.1.4=py_0
   - networkx=2.8.4=py39haa95532_0
   - numexpr=2.8.4=py39h5b0cc5e_0
   - numpy=1.23.5=py39h3b20f71_0
   - numpy-base=1.23.5=py39h4da318b_0
-  - openjpeg=2.4.0=h4fc8c34_0
-  - openssl=1.1.1t=h2bbff1b_0
+  - openjpeg=2.5.0=ha2aaf27_2
+  - openssl=3.1.0=hcfcfb64_0
+  - osmnx=1.3.0=pyhd8ed1ab_0
   - packaging=22.0=py39haa95532_0
   - pandas=1.5.3=py39hf11a4ad_0
   - pcre=8.45=hd77b12b_0
-  - pcre2=10.37=h0ff8eda_1
-  - pillow=9.4.0=py39hd77b12b_0
+  - pcre2=10.40=h17e33f8_0
+  - pillow=9.4.0=py39haa1d754_2
   - pip=23.0.1=py39haa95532_0
   - pixman=0.40.0=h2bbff1b_1
   - pooch=1.4.0=pyhd3eb1b0_0
-  - poppler=22.12.0=h268424c_0
+  - poppler=23.03.0=h934c637_1
   - poppler-data=0.4.11=haa95532_1
-  - postgresql=12.9=hb652d5d_3
-  - proj=6.2.1=h3758d61_0
+  - postgresql=15.2=hd87cd2b_0
+  - proj=9.1.1=heca977f_2
+  - pthread-stubs=0.4=hcd874cb_1001
   - pycparser=2.21=pyhd3eb1b0_0
   - pyopenssl=23.0.0=py39haa95532_0
   - pyparsing=3.0.9=py39haa95532_0
-  - pyproj=2.6.1.post1=py39h593ac45_1
+  - pyproj=3.4.1=py39hc799f2e_1
   - pysocks=1.7.1=py39haa95532_0
-  - python=3.9.16=h6244533_2
+  - python=3.9.16=h4de0772_0_cpython
   - python-dateutil=2.8.2=pyhd3eb1b0_0
+  - python_abi=3.9=3_cp39
   - pytz=2022.7=py39haa95532_0
   - qhull=2020.2=h59b6b97_2
+  - rasterio=1.3.6=py39h156e9e9_0
   - requests=2.28.1=py39haa95532_1
   - rtree=1.0.1=py39h2eaa2aa_0
   - scikit-learn=1.2.1=py39hd77b12b_0
   - scipy=1.10.0=py39h321e85e_1
   - setuptools=65.6.3=py39haa95532_0
-  - shapely=1.8.4=py39h9064783_0
+  - shapely=2.0.1=py39h7c5f289_0
   - six=1.16.0=pyhd3eb1b0_1
+  - snuggs=1.4.7=py_0
   - sqlite=3.40.1=h2bbff1b_0
   - threadpoolctl=2.2.0=pyh0d69192_0
-  - tiledb=2.3.3=h3649cd2_2
+  - tiledb=2.13.2=h3132609_0
   - tk=8.6.12=h2bbff1b_0
   - tzdata=2022g=h04d1e81_0
+  - ucrt=10.0.22621.0=h57928b3_0
   - urllib3=1.26.14=py39haa95532_0
   - vc=14.2=h21ff451_1
-  - vs2015_runtime=14.27.29016=h5e58377_2
+  - vs2015_runtime=14.34.31931=h4c5c07a_10
   - wheel=0.38.4=py39haa95532_0
   - win_inet_pton=1.1.0=py39haa95532_0
   - wincertstore=0.2=py39haa95532_2
   - xerces-c=3.2.4=hd77b12b_0
+  - xorg-libxau=1.0.9=hcd874cb_0
+  - xorg-libxdmcp=1.1.3=hcd874cb_0
   - xyzservices=2022.9.0=py39haa95532_1
   - xz=5.2.10=h8cc25b3_1
   - zipp=3.11.0=py39haa95532_0
-  - zlib=1.2.13=h8cc25b3_0
+  - zlib=1.2.13=hcfcfb64_4
   - zstd=1.5.2=h19a0ad4_0
 prefix: C:\Users\Sam\anaconda3\envs\MedicalDesertEnv

@@ -168,4 +168,8 @@ dependencies:
   - zipp=3.15.0=pyhd8ed1ab_0
   - zlib=1.2.13=hcfcfb64_4
   - zstd=1.5.2=h12be248_6
+  - pip:
+      - appdirs==1.4.4
+      - pygris==0.1.3
+      - yelpapi==2.5.0
 prefix: C:\Users\Sam\anaconda3\envs\MedicalDesertEnv

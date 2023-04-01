@@ -26,6 +26,7 @@ dependencies:
   - cryptography=39.0.2=py39hb6bd5e6_0
   - curl=7.88.1=h68f0423_0
   - cycler=0.11.0=pyhd8ed1ab_0
+  - decorator=5.1.1=pyhd8ed1ab_0
   - exceptiongroup=1.1.1=pyhd8ed1ab_0
   - expat=2.5.0=h1537add_0
   - fiona=1.9.1=py39hb5a1417_0
@@ -40,9 +41,13 @@ dependencies:
   - fonttools=4.39.0=py39ha55989b_0
   - freetype=2.12.1=h546665d_1
   - freexl=1.0.6=h67ca5e6_1
+  - future=0.18.3=pyhd8ed1ab_0
   - gdal=3.6.3=py39h3be0312_0
+  - geocoder=1.38.1=py_1
+  - geographiclib=1.52=pyhd8ed1ab_0
   - geopandas=0.12.2=pyhd8ed1ab_0
   - geopandas-base=0.12.2=pyha770c72_0
+  - geopy=2.3.0=pyhd8ed1ab_0
   - geos=3.11.1=h1537add_0
   - geotiff=1.7.1=hb4c6682_7
   - gettext=0.21.1=h5728263_0
@@ -135,6 +140,7 @@ dependencies:
   - python_abi=3.9=3_cp39
   - pytz=2022.7.1=pyhd8ed1ab_0
   - rasterio=1.3.6=py39h156e9e9_0
+  - ratelim=0.1.6=py_2
   - requests=2.28.2=pyhd8ed1ab_0
   - rtree=1.0.1=py39h09fdee3_1
   - scikit-learn=1.2.2=py39h6fe01c0_0
@@ -170,6 +176,8 @@ dependencies:
   - zstd=1.5.2=h12be248_6
   - pip:
       - appdirs==1.4.4
+      - censusgeocode==0.5.2
       - pygris==0.1.3
+      - requests-toolbelt==0.10.1
       - yelpapi==2.5.0
 prefix: C:\Users\Sam\anaconda3\envs\MedicalDesertEnv

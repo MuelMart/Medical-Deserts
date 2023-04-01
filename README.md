@@ -62,7 +62,7 @@ This is an export of the Centers for Medicare and Medicaid (CMS) [National Downl
 A filtered copy of the **DOCTORS_RAW** table, which contains data for only *Internal Medicine* and *Family Practice* clinicians.
 
 ### DOCTORS_LOCATIONS
-Contains the geocoded locations of all practices from the **DOCTORS** table. Contains the following fields
+Contains the geocoded locations of all practices from the **DOCTORS** table.
 
 **adrs_id**  
 Unique identifier for the address of the practice.

@@ -94,8 +94,8 @@ The WGS40 longitude of the practice.
 ### TRACT_GEOMETRIES
 Contains the geometries for every tract in the country. Stored using the spatialite[https://www.gaia-gis.it/fossil/libspatialite/index] SQLite extension.
 
-**GEOID**
+**GEOID**  
 Unique tract identifier.
 
-**geometry**
+**geometry**  
 ST feature geometry for the census tract.

@@ -1,4 +1,4 @@
-packages <- c('tidyverse', 'tidycensus', 'RSQLite', 'DBI', 'tigris', 'sf')
+packages <- c('tidyverse', 'tidycensus', 'RSQLite', 'DBI', 'tigris', 'sf', 'rgdal')
 
 #Load in packages
 for(p in packages){
@@ -100,7 +100,8 @@ write_tracts_to_sqlite <- function(data, dbPath){
   
   #Remove geometries from acs data
   geometries <- data %>%
-    select(c(GEOID, geometry))
+    select(c(GEOID, geometry)) %>%
+    st_transform(crs = 4269)
   no_geometries <- data %>%
    st_drop_geometry()
   
@@ -109,9 +110,9 @@ write_tracts_to_sqlite <- function(data, dbPath){
   
   #Write table to database
   dbWriteTable(conn, 'TRACTS', no_geometries, overwrite = TRUE)
-  st_write(geometries, dsn = conn, layer = 'TRACT_GEOMETRIES')
+  st_write(geometries, dsn = conn, layer = 'TRACT_GEOMETRIES', driver = 'SQLite', append = FALSE, crs = st_crs(geometries))
   
-  dbDisconnect(conn)
+  dbDisconnect(conn, dsn = dbPath)
 }
 
 ###

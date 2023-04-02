@@ -55,6 +55,9 @@ ACS Var DP04_0141P + ACS Var DP04_0142P. The percentage of households in a tract
 **P_SingleParentHouseholdE**  
 ACS Var DP02_0007P + ACS Var DP02_0011P. The percentage of households in a tract that are headed by a single parent.
 
+**total_clinicians**  
+The total number of Internal Medicine or Family Practice doctors within 25km of the census tract. Data was aggregated from **DOCTORS_LOCATIONS**.
+
 ### DOCTORS_RAW  
 This is an export of the Centers for Medicare and Medicaid (CMS) [National Downloadable File](https://data.cms.gov/provider-data/dataset/mj5m-pzi6). Please consult the [data dicitionary](https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/physician/DOC_Data_Dictionary.pdf) on the CMS Website.
 

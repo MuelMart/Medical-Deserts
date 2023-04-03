@@ -3,7 +3,7 @@ This repository serves as the codebase for our CSE6242 final project.
 >The objective of our research is to utilize an analytical approach to identify and understand the characteristics of medical deserts. We plan to achieve this task by leveraging American Community Survey 5-year Estimate data alongside Centers for Medicare & Medicaid Services data. With this data, we intend to calculate the number of family practice doctor’s offices within a 25 km radius of each tract centroid in the country. A clustering model will be applied to the data to identify discrete groups that exhibit similar demographic characteristics, socioeconomic characteristics (e.g. tract poverty rate, median household income, etc.), as well as healthcare facility access. Additionally, the researchers will employ a regularized regression model to identify which socioeconomic / demographic characteristics are most important in determining the number of doctors within a 25 km radius of a tract. The final product will come in the form of an interactive map which displays which tracts are most vulnerable with respect to healthcare access alongside additional information regarding the demographic profile of said tracts. The hope is that this project can provide a new perspective to understanding the mechanisms through which inequity can perpetuate the hinderance of medical access.
 
 ## Table of Contents
-[Data Dictionary](#data-dictionary)
+[Data Dictionary](#data-dictionary)  
 [Geoprocessing Methodology](#geoprocessing-methodology)
 
 ## Data Dictionary
@@ -90,10 +90,10 @@ Field indicating if the addr_ln_2 is unreliable.
 Either the sum of all *Internal Medicine* or *Family Practice* clinicians in the specified organization. Or 1 for a individual private practice clinician.
 
 **lat**  
-The WGS40 latitude of the practice.
+The WGS84 (EPSG 4326) latitude of the practice.
 
 **lon**  
-The WGS40 longitude of the practice.
+The WGS84 (EPSG 4326) longitude of the practice.
 
 ### TRACT_GEOMETRIES
 Contains the geometries for every tract in the country. Stored using the [spatialite](https://www.gaia-gis.it/fossil/libspatialite/index) SQLite extension.

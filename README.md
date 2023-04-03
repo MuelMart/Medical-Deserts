@@ -4,6 +4,7 @@ This repository serves as the codebase for our CSE6242 final project.
 
 ## Table of Contents
 [Data Dictionary](#data-dictionary)
+[Geoprocessing Methodology](#geoprocessing-methodology)
 
 ## Data Dictionary
 The dataset is housed in a SQLite database, which contains the following tables:
@@ -102,3 +103,5 @@ Unique tract identifier.
 
 **geometry**  
 ST feature geometry for the census tract.
+
+## Geoprocessing Methodology

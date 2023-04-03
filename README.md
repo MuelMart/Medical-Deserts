@@ -102,6 +102,6 @@ Contains the geometries for every tract in the country. Stored using the [spatia
 Unique tract identifier.
 
 **geometry**  
-ST feature geometry for the census tract.
+ST feature geometry for the census tract (EPSG 4269).
 
 ## Geoprocessing Methodology

@@ -4,6 +4,7 @@ import numpy as np
 import pyproj
 import sqlite3
 import folium
+from geopy.geocoders import Nominatim
 
 #Pull doc location data
 def pull_doc_data(dbpath):
@@ -57,38 +58,40 @@ def execute_sql(dbpath, tract_table):
     conn = sqlite3.connect(dbpath)
     tract_table.to_sql('TRACTS', con = conn, if_exists = 'replace')
     conn.close()
-    
 
 
 #Func to create and export folium maps
-def export_map(tract_data, geoms, geo_join_clean, export_path, state_abb = None):
+def export_map(joined_data, geolocator= Nominatim(user_agent='app'), export_path = None, state_abb = None):
+
+    docs_per_tract = joined_data.copy()
 
     #Get tracts for state or entire country, then filter with geometry
     if state_abb != None:
-        ga_tracts = tract_data[tract_data.state == state_abb]['GEOID']
-        ga_geoms = geoms[geoms['GEOID'].isin(ga_tracts)].to_crs('EPSG:4269')
+        docs_per_tract = docs_per_tract[docs_per_tract.state == state_abb].to_crs('EPSG:4269')
+        bounds = geolocator.geocode(state_abb + ', USA')
+
+        x = bounds[1][1]
+        y = bounds[1][0]
 
     else:
-        ga_geoms = geoms.to_crs('EPSG:4269')
+        docs_per_tract = docs_per_tract.to_crs('EPSG:4269')
+        bounds = docs_per_tract.dissolve().centroid
+        
+        x = bounds[0].x
+        y = bounds[0].y
 
-    #Create a map for tract geometry
-    #Get centroid point
-    bounds = ga_geoms.dissolve().centroid
-
-    #Create a map for number of docters per tract
-    docs_per_tract = ga_geoms.join(geo_join_clean, on = 'GEOID', how = 'left')
     #Get thresholds
-    intervals = docs_per_tract['num_clinicians'].describe()
+    intervals = docs_per_tract['total_clinicians'].describe()
     thresholds = [0,1,intervals['25%'],intervals['50%'],intervals['75%'],intervals['max']]
 
     #Create map from bounding box
-    docs_per_tract_map = folium.Map(location = [bounds[0].y, bounds[0].x], zoom_start = 5)
+    docs_per_tract_map = folium.Map(location = [y,x], zoom_start = 5)
 
     #Create chloropleth
     folium.Choropleth(
         geo_data = docs_per_tract.set_index('GEOID')['geometry'].to_json(),
         data = docs_per_tract,
-        columns = ['GEOID','num_clinicians'],
+        columns = ['GEOID','total_clinicians'],
         key_on = 'feature.id',
         fill_color = 'RdYlGn',
         fill_opacity = 0.5,
@@ -97,7 +100,10 @@ def export_map(tract_data, geoms, geo_join_clean, export_path, state_abb = None)
         legend_name = 'Number of Clinicians within 25km of Tract'
     ).add_to(docs_per_tract_map)
 
-    docs_per_tract_map.save(export_path + '\{}_tracts.html'.format(state_abb))
+    if export_path != None:
+        docs_per_tract_map.save(export_path + '\{}_tracts.html'.format(state_abb))
+
+    return docs_per_tract_map
 
 
 def main(dbpath):
@@ -110,6 +116,4 @@ def main(dbpath):
     tract_table = calc_docs_within_25km(doc_data, tract_data, geoms)
 
     execute_sql(dbpath, tract_table)
-
-main(dbpath)
 

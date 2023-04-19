@@ -112,4 +112,7 @@ To utilize the app, please adhere to the following steps:
 2. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
 3. Open the anaconda prompt, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
 4. Paste the following into the anaconda prompt: `conda env create -f MedicalDesertEnv.yml`. This will intialize all package dependencies for the app.
-5. Once the environment is created, paste the following into the anaconda prompt: `streamlit run app.py`
+5. Once the environment is created, paste the following into the anaconda prompt: `conda activate MedicalDesertEnv` 
+6. Lastly, execute the following: `streamlit run app.py`
+
+If you have already initialized the environment in step 4, there is no need to repeat the first 4 steps. Simply activate the environment and run the app!

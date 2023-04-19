@@ -107,7 +107,7 @@ ST feature geometry for the census tract (EPSG 4269).
 ## Accessing the App
 To utilize the app, please adhere to the following steps:
 
-1. Download the app package from [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo.
+1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
 2. Extract package contents locally.
 2. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
 3. Open the anaconda prompt, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`

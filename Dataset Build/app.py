@@ -1,13 +1,10 @@
 from Geoprocessing import export_map, geo_avg_fig, pull_tract_data, pull_tract_geometries
 import pandas as pd
+import geopandas as gpd
 import streamlit as st
 from streamlit_folium import folium_static
 import numpy as np
-
-
-
-#Pull data
-dbpath = "appdata.sqlite"
+import argparse
 
 @st.cache_data
 def build_dataset(dbpath):
@@ -33,21 +30,54 @@ def get_states(_join):
 
     return states
 
+@st.cache_data
+def read_geojson(gjson):
+    return gpd.read_file(gjson)
+
+
 
 if __name__ == "__main__":
 
-    #Get data
-    join = build_dataset(dbpath)
-    states = get_states(join)
+    #Set arguments for demo data or full data
+    parser = argparse.ArgumentParser(description='Set the mode for which the app will run.')
+    parser.add_argument('mode', metavar='M', choices = ['full','demo'], type=str, nargs=1,
+                        help='The mode for the app, either full or demo')
+    args = parser.parse_args()
+    mode = args.mode[0]
 
+    #If mode is demo
+    if mode == 'demo':
+        #Load in demo data for app
+        join = read_geojson('demodata.geojson')
+
+    else:
+        #Get data from sqlitedb
+        #Set dbpath
+        dbpath = "appdata.sqlite"
+        join = build_dataset(dbpath)
+
+    states = get_states(join)
 
     st.title('Medical :orange[Deserts]')
     st.header('A Snapshot of Healthcare Access in America')
-    st.markdown('''
-    >Medical deserts are defined as areas where individuals live “...over 25 km (i.e., more than a 20-min drive) from the closest hospital” (Di Novi 2020).
-    In order to better understand Medical deserts and where they persist, select a state from the list below and explore the map.
-    The map displays all the **census tracts** within the state, colored by the number of doctors that are within 25 kilometers of said tract.
-    ''')
+
+    #Special message for demo mode
+    if mode == 'demo':
+        st.markdown('''
+        >Medical deserts are defined as areas where individuals live “...over 25 km (i.e., more than a 20-min drive) from the closest hospital” (Di Novi 2020).
+        In order to better understand Medical deserts and where they persist, select a state from the list below and explore the map.
+        The map displays all the **census tracts** within the state, colored by the number of doctors that are within 25 kilometers of said tract.
+        Please note that you are currently using the Demo version, which only displays states for the states AL, MS, GA, SC, and NC.
+        If you would like access to the full version, please contact the authors below.
+        ''')
+
+    else:
+        st.markdown('''
+        >Medical deserts are defined as areas where individuals live “...over 25 km (i.e., more than a 20-min drive) from the closest hospital” (Di Novi 2020).
+        In order to better understand Medical deserts and where they persist, select a state from the list below and explore the map.
+        The map displays all the **census tracts** within the state, colored by the number of doctors that are within 25 kilometers of said tract.
+        ''')
+
     state = st.selectbox("Select a state:", states)
 
     #Generate map

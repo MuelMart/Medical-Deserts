@@ -126,7 +126,7 @@ def geo_avg_fig(data,geo,type = 'state'):
     fig = plt.figure()
     plt.style.use('dark_background')
     plt.bar(labels, [s_avg,n_avg], color = ['#4287f5','#b6bfcf'])
-    plt.rc('font', family='IBM Plex Sans')
+    plt.rc('font', family='Oswald')
     plt.xticks(weight = 'bold')
     
     return fig

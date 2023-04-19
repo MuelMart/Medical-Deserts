@@ -107,7 +107,7 @@ ST feature geometry for the census tract (EPSG 4269).
 ## Accessing the App
 To utilize the app, please adhere to the following steps:
 
-1. Download the app package from here.
+1. Download the app package from [here](https://gtvault-my.sharepoint.com/:u:/g/personal/smartinez63_gatech_edu/EZWflcZOsdBLtkcP9Y8geBIBLFSq9viojjbuvfWPWckeUg?e=URpM1k).
 2. Extract package contents locally.
 2. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
 3. Open the anaconda prompt, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`

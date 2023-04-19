@@ -5,6 +5,8 @@ import pyproj
 import sqlite3
 import folium
 from geopy.geocoders import Nominatim
+from folium import plugins
+import matplotlib.pyplot as plt
 
 #Pull doc location data
 def pull_doc_data(dbpath):
@@ -67,43 +69,68 @@ def export_map(joined_data, geolocator= Nominatim(user_agent='app'), export_path
 
     #Get tracts for state or entire country, then filter with geometry
     if state_abb != None:
-        docs_per_tract = docs_per_tract[docs_per_tract.state == state_abb].to_crs('EPSG:4269')
+        data = docs_per_tract[docs_per_tract.state == state_abb].to_crs('EPSG:4269')
         bounds = geolocator.geocode(state_abb + ', USA')
 
         x = bounds[1][1]
         y = bounds[1][0]
 
     else:
-        docs_per_tract = docs_per_tract.to_crs('EPSG:4269')
-        bounds = docs_per_tract.dissolve().centroid
+        data = docs_per_tract.to_crs('EPSG:4269')
+        bounds = data.dissolve().centroid
         
         x = bounds[0].x
         y = bounds[0].y
 
     #Get thresholds
-    intervals = docs_per_tract['total_clinicians'].describe()
-    thresholds = [0,1,intervals['25%'],intervals['50%'],intervals['75%'],intervals['max']]
+    intervals = docs_per_tract['total_clinicians'].describe(percentiles = [0.2,0.4,0.6,0.8])
+    thresholds = [0,1,intervals['20%'],intervals['40%'],intervals['60%'],intervals['80%'],intervals['max']]
 
     #Create map from bounding box
-    docs_per_tract_map = folium.Map(location = [y,x], zoom_start = 5)
+    m = folium.Map(location = [y,x], zoom_start = 5)
+
+    data_json = data.to_json()
 
     #Create chloropleth
-    folium.Choropleth(
-        geo_data = docs_per_tract.set_index('GEOID')['geometry'].to_json(),
-        data = docs_per_tract,
+    gj = folium.Choropleth(
+        geo_data = data_json,
+        data = data.drop('geometry',axis=1),
         columns = ['GEOID','total_clinicians'],
-        key_on = 'feature.id',
+        key_on = 'feature.properties.GEOID',
         fill_color = 'RdYlGn',
-        fill_opacity = 0.5,
+        fill_opacity = 0.6,
         line_opacity = 0,
         bins = thresholds,
-        legend_name = 'Number of Clinicians within 25km of Tract'
-    ).add_to(docs_per_tract_map)
+        legend_name = 'Number of Clinicians within 25km of Tract',
+        highlight = True,
+        tooltip = None
+    ).add_to(m)
+
+    #Create tooltip
+    folium.GeoJsonTooltip(fields = ['NAME', 'total_clinicians'], aliases = ['Name', 'Docs within 25km']).add_to(gj.geojson)
 
     if export_path != None:
-        docs_per_tract_map.save(export_path + '\{}_tracts.html'.format(state_abb))
+        m.save(export_path + '\{}_tracts.html'.format(state_abb))
 
-    return docs_per_tract_map
+    return m
+
+def geo_avg_fig(data,geo,type = 'state'):
+    #Filter for da geography of interest
+    filt = data[data[type] == geo]
+
+    #Get avg docs per tract in state
+    s_avg = np.mean(filt['total_clinicians'])
+    n_avg = np.mean(data['total_clinicians'])
+    labels = ['State Average','National Average']
+
+    fig = plt.figure()
+    plt.style.use('dark_background')
+    plt.bar(labels, [s_avg,n_avg], color = ['#4287f5','#b6bfcf'])
+    plt.rc('font', family='IBM Plex Sans')
+    plt.xticks(weight = 'bold')
+    
+    return fig
+
 
 
 def main(dbpath):

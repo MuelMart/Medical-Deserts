@@ -4,7 +4,7 @@ This repository serves as the codebase for our CSE6242 final project.
 
 ## Table of Contents
 [Data Dictionary](#data-dictionary)  
-[Geoprocessing Methodology](#geoprocessing-methodology)
+[Accessing the App](#accessing-the-app)
 
 ## Data Dictionary
 The dataset is housed in a SQLite database, which contains the following tables:
@@ -104,4 +104,14 @@ Unique tract identifier.
 **geometry**  
 ST feature geometry for the census tract (EPSG 4269).
 
-## Geoprocessing Methodology
+## Accessing the App
+To utilize the app, please adhere to the following steps:
+
+1. Download the app package from here.
+2. Extract package contents locally.
+2. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
+3. Open the anaconda prompt, and change the directory to the folder containing the app package contents.
+  * cd 'Path/To/My/Directory'
+4. Paste the following into the anaconda prompt: `conda env create -f MedicalDesertEnv.yml`
+  * This will intialize all package dependencies for the app.
+5. Once the environment is created, paste the following into the anaconda prompt: `streamlit run app.py`

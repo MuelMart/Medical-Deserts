@@ -107,12 +107,9 @@ ST feature geometry for the census tract (EPSG 4269).
 ## Accessing the App
 To utilize the app, please adhere to the following steps:
 
-1. Download the app package from [here](https://gtvault-my.sharepoint.com/:u:/g/personal/smartinez63_gatech_edu/EZWflcZOsdBLtkcP9Y8geBIBLFSq9viojjbuvfWPWckeUg?e=URpM1k).
+1. Download the app package from [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo.
 2. Extract package contents locally.
 2. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
 3. Open the anaconda prompt, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
-4. Paste the following into the anaconda prompt: `conda env create -f MedicalDesertEnv.yml`. This will intialize all package dependencies for the app.
-5. Once the environment is created, paste the following into the anaconda prompt: `conda activate MedicalDesertEnv` 
-6. Lastly, execute the following: `streamlit run app.py`
-
-If you have already initialized the environment in step 4, there is no need to repeat the first 4 steps. Simply activate the environment and run the app!
+4. Paste the following into the anaconda prompt: `initialize_env.bat`. This will intialize all package dependencies for the app.
+5. Once the environment is created, paste the following into the anaconda prompt: `app.bat`. This will launch the app.

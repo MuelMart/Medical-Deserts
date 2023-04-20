@@ -4,7 +4,8 @@ This repository serves as the codebase for our CSE6242 final project.
 
 ## Table of Contents
 [Data Dictionary](#data-dictionary)  
-[Accessing the App (Windows)](#accessing-the-app)
+[Accessing the App (Conda)](#accessing-the-app-conda) 
+[Accessing the App (Pip)](#accessing-the-app-pip)
 
 ## Data Dictionary
 The dataset is housed in a SQLite database, which contains the following tables:
@@ -104,14 +105,24 @@ Unique tract identifier.
 **geometry**  
 ST feature geometry for the census tract (EPSG 4269).
 
-## Accessing the App
+## Accessing the App (Conda)
 To utilize the app, please adhere to the following steps:
 
 1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
 2. Extract package contents locally.
-2. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
-3. Open the anaconda prompt, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
-4. Paste the following into the anaconda prompt: `conda env create -f AppEnv.yml`. This will install the package dependencies to execute the app.
-5. Paste the following into the anaconda prompt: `conda activate AppEnv`. This will activate the environment for use with the app.
-6. Once the environment is created, paste the following into the anaconda prompt: `streamlit run app.py demo`. This will launch a demo version of the app.
-7. If you have already installed the environment, from step 4, you can start from step 5 for running the app in the future.
+3. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
+4. Open the anaconda prompt, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
+5. Paste the following into the anaconda prompt: `conda env create -f AppEnv.yml`. This will install the package dependencies to execute the app.
+6. Paste the following into the anaconda prompt: `conda activate AppEnv`. This will activate the environment for use with the app.
+7. Once the environment is created, paste the following into the anaconda prompt: `streamlit run app.py demo`. This will launch a demo version of the app.
+8. If you have already installed the environment from step 5, you can start from step 6 for running the app in the future.
+
+## Accessing the App (Pip)
+If you encounter dependency issues in the above step, you can manually install the packages to your local python installation to run the app.
+
+1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
+2. Extract package contents locally.
+3. Open the command line, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
+4. Paste the following into the command line: `pip install -r requirements.txt`. This will install the package dependencies to execute the app.
+5. Once the environment is created, paste the following into the anaconda prompt: `streamlit run app.py demo`. This will launch a demo version of the app.
+6. If you have already installed the packages from step 4, you can start from step 5 for running the app in the future.

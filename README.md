@@ -4,8 +4,8 @@ This repository serves as the codebase for our CSE6242 final project.
 
 ## Table of Contents
 [Data Dictionary](#data-dictionary)  
-[Accessing the App (Windows)](#accessing-the-app-windows)
-[Accessing the App (Mac and Linux)](#accessing-the-app-mac-and-linux)
+[Accessing the App (Windows)](#accessing-the-app-windows) 
+[Accessing the App (Mac and Linux)](#accessing-the-app-mac-and-linux) 
 
 ## Data Dictionary
 The dataset is housed in a SQLite database, which contains the following tables:

@@ -4,8 +4,7 @@ This repository serves as the codebase for our CSE6242 final project.
 
 ## Table of Contents
 [Data Dictionary](#data-dictionary)  
-[Accessing the App (Windows)](#accessing-the-app-windows) 
-[Accessing the App (Mac and Linux)](#accessing-the-app-mac-and-linux) 
+[Accessing the App (Windows)](#accessing-the-app)
 
 ## Data Dictionary
 The dataset is housed in a SQLite database, which contains the following tables:
@@ -105,24 +104,14 @@ Unique tract identifier.
 **geometry**  
 ST feature geometry for the census tract (EPSG 4269).
 
-## Accessing the App (Windows)
+## Accessing the App
 To utilize the app, please adhere to the following steps:
 
 1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
 2. Extract package contents locally.
 2. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
 3. Open the anaconda prompt, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
-4. Paste the following into the anaconda prompt: `initialize_env.bat`. This will intialize all package dependencies for the app.
-5. Once the environment is created, paste the following into the anaconda prompt: `app.bat`. This will launch a demo version of the app.
-
-## Accessing the App (Mac and Linux)
-To utilize the app, please adhere to the following steps:
-
-1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
-2. Extract package contents locally.
-2. Make sure you have an installation of [anaconda](https://anaconda.org/) on your machine.
-3. Open the anaconda prompt, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
-4. Paste the following into the anaconda prompt: `conda env create -f MedicalDesertEnv.yml`. This will install the package dependencies to execute the app.
-5. Paste the following into the anaconda prompt: `conda activate MedicalDesertEnv`. This will activate the environment for use with the app.
+4. Paste the following into the anaconda prompt: `conda env create -f AppEnv.yml`. This will install the package dependencies to execute the app.
+5. Paste the following into the anaconda prompt: `conda activate AppEnv`. This will activate the environment for use with the app.
 6. Once the environment is created, paste the following into the anaconda prompt: `streamlit run app.py demo`. This will launch a demo version of the app.
 7. If you have already installed the environment, from step 4, you can start from step 5 for running the app in the future.

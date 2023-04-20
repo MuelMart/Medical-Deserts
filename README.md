@@ -105,7 +105,7 @@ Unique tract identifier.
 **geometry**  
 ST feature geometry for the census tract (EPSG 4269).
 
-## Accessing the App (Conda)
+## Accessing the Demo App (Conda)
 To utilize the app, please adhere to the following steps:
 
 1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
@@ -117,7 +117,7 @@ To utilize the app, please adhere to the following steps:
 7. Once the environment is created, paste the following into the anaconda prompt: `streamlit run app.py demo`. This will launch a demo version of the app.
 8. If you have already installed the environment from step 5, you can start from step 6 for running the app in the future.
 
-## Accessing the App (Pip)
+## Accessing the Demo App (Pip)
 If you encounter dependency issues in the above step, you can manually install the packages to your local python installation to run the app.
 
 1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
@@ -126,3 +126,10 @@ If you encounter dependency issues in the above step, you can manually install t
 4. Paste the following into the command line: `pip install -r requirements.txt`. This will install the package dependencies to execute the app.
 5. Once the environment is created, paste the following into the command line: `streamlit run app.py demo`. This will launch a demo version of the app.
 6. If you have already installed the packages from step 4, you can start from step 5 for running the app in the future.
+
+## Accessing the Full App
+If you want to access the full app (data for every single state), please do the following.
+1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
+2. Install the appdata.sqlite database from [here](https://gtvault-my.sharepoint.com/:u:/g/personal/smartinez63_gatech_edu/EdM3BAc0jVlLl8ZELcS28BkBIglv7PwI0NZLZ45JcFSDvg?e=id8BF2)
+3. Extract the appdata.zip, then drag and drop the appdata.sqlite file into the directory from step 1.
+4. Refer to the steps from above. Instead of running `streamlit run app.py demo`, execute `streamlit run app.py full`

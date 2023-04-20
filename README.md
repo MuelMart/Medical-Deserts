@@ -5,7 +5,7 @@ This repository serves as the codebase for our CSE6242 final project.
 ## Table of Contents
 [Data Dictionary](#data-dictionary)  
 [Accessing the App (Conda)](#accessing-the-app-conda) 
-[Accessing the App (Pip)](#accessing-the-app-pip)
+[Accessing the App (Pip)](#accessing-the-app-pip) 
 
 ## Data Dictionary
 The dataset is housed in a SQLite database, which contains the following tables:

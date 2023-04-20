@@ -69,10 +69,10 @@ def export_map(joined_data, export_path = None, state_abb = None):
     #Get tracts for state or entire country, then filter with geometry
     if state_abb != None:
         data = docs_per_tract[docs_per_tract.state == state_abb].to_crs('EPSG:4269')
-        bounds = Nominatim(user_agent='app').geocode(state_abb + ', USA')
+        bounds = data['geometry'].total_bounds
 
-        x = bounds[1][1]
-        y = bounds[1][0]
+        x = bounds[0]
+        y = bounds[3]
 
     else:
         data = docs_per_tract.to_crs('EPSG:4269')

@@ -4,8 +4,8 @@ This repository serves as the codebase for our CSE6242 final project.
 
 ## Table of Contents
 [Data Dictionary](#data-dictionary)  
-[Accessing the App (Conda)](#accessing-the-app-conda) 
-[Accessing the App (Pip)](#accessing-the-app-pip)
+[Accessing the App (Conda)](#accessing-the-app-conda)  
+[Accessing the App (Pip)](#accessing-the-app-pip)  
 
 ## Data Dictionary
 The dataset is housed in a SQLite database, which contains the following tables:
@@ -124,5 +124,5 @@ If you encounter dependency issues in the above step, you can manually install t
 2. Extract package contents locally.
 3. Open the command line, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
 4. Paste the following into the command line: `pip install -r requirements.txt`. This will install the package dependencies to execute the app.
-5. Once the environment is created, paste the following into the anaconda prompt: `streamlit run app.py demo`. This will launch a demo version of the app.
+5. Once the environment is created, paste the following into the command line: `streamlit run app.py demo`. This will launch a demo version of the app.
 6. If you have already installed the packages from step 4, you can start from step 5 for running the app in the future.

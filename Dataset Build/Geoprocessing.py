@@ -1,11 +1,11 @@
 import pandas as pd
 import geopandas as gpd
 import numpy as np
-import pyproj
 import sqlite3
 import folium
 from geopy.geocoders import Nominatim
-from folium import plugins
+import folium
+import branca.colormap as cm
 import matplotlib.pyplot as plt
 
 #Pull doc location data
@@ -63,14 +63,14 @@ def execute_sql(dbpath, tract_table):
 
 
 #Func to create and export folium maps
-def export_map(joined_data, geolocator= Nominatim(user_agent='app'), export_path = None, state_abb = None):
+def export_map(joined_data, export_path = None, state_abb = None):
 
     docs_per_tract = joined_data.copy()
 
     #Get tracts for state or entire country, then filter with geometry
     if state_abb != None:
         data = docs_per_tract[docs_per_tract.state == state_abb].to_crs('EPSG:4269')
-        bounds = geolocator.geocode(state_abb + ', USA')
+        bounds = Nominatim(user_agent='app').geocode(state_abb + ', USA')
 
         x = bounds[1][1]
         y = bounds[1][0]

@@ -49,14 +49,15 @@ if __name__ == "__main__":
     if mode == 'demo':
         #Load in demo data for app
         join = read_geojson('demodata.geojson')
+        states = get_states(join)
+        states.reverse()
 
     else:
         #Get data from sqlitedb
         #Set dbpath
         dbpath = "appdata.sqlite"
         join = build_dataset(dbpath)
-
-    states = get_states(join)
+        states = get_states(join)
 
     st.title('Medical :orange[Deserts]')
     st.header('A Snapshot of Healthcare Access in America')

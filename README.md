@@ -132,4 +132,4 @@ If you want to access the full app (data for every single state), please do the 
 1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.
 2. Install the appdata.sqlite database from [here](https://gtvault-my.sharepoint.com/:u:/g/personal/smartinez63_gatech_edu/EdM3BAc0jVlLl8ZELcS28BkBIglv7PwI0NZLZ45JcFSDvg?e=id8BF2)
 3. Extract the appdata.zip, then drag and drop the appdata.sqlite file into the directory from step 1.
-4. Refer to the steps from above. Instead of running `streamlit run app.py demo`, execute `streamlit run app.py full`
+4. Refer to the demo sections from above (depending on whether you use conda or pip). Instead of running `streamlit run app.py demo`, execute `streamlit run app.py full`

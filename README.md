@@ -126,7 +126,7 @@ If you encounter dependency issues in the above step, you can manually install t
 3. Open the command line, and change the directory to the folder containing the app package contents. `cd Path/To/My/Directory`
 4. OPTIONAL: Create a virtual environment using `python -m venv AppEnv`, then activate it according to your operating system's [specifications](https://docs.python.org/3/tutorial/venv.html).
 5. Paste the following into the command line: `python -m pip install -r requirements.txt`. This will install the package dependencies to execute the app.
-6. Once the environment is created, paste the following into the command line: `streamlit run app.py demo`. This will launch a demo version of the app.
+6. Once the environment is created, paste the following into the command line: `python -m streamlit run app.py demo`. This will launch a demo version of the app.
 7. If you have already installed the packages from step 5, you can start from step 6 for running the app in the future.
 
 ## Accessing the Full App

@@ -4,7 +4,7 @@ This repository serves as the codebase for our CSE6242 final project.
 
 ## Table of Contents
 [Data Dictionary](#data-dictionary)  
-[Accessing the App](#accessing-the-app)
+[Accessing the App (Windows)](#accessing-the-app-windows)
 
 ## Data Dictionary
 The dataset is housed in a SQLite database, which contains the following tables:
@@ -104,7 +104,7 @@ Unique tract identifier.
 **geometry**  
 ST feature geometry for the census tract (EPSG 4269).
 
-## Accessing the App
+## Accessing the App (Windows)
 To utilize the app, please adhere to the following steps:
 
 1. Download the [Dataset Build](https://github.com/MuelMart/Medical-Deserts/tree/main/Dataset%20Build) folder of this repo. This is the package for the app.

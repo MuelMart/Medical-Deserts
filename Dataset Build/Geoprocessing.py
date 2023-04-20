@@ -5,7 +5,6 @@ import sqlite3
 import folium
 from geopy.geocoders import Nominatim
 import folium
-import branca.colormap as cm
 import matplotlib.pyplot as plt
 
 #Pull doc location data

@@ -1,0 +1,19 @@
+name: AppEnv
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - folium=0.14.0=pyhd8ed1ab_0
+  - geopandas=0.12.2=pyhd8ed1ab_0
+  - geopandas-base=0.12.2=pyha770c72_0
+  - geopy=2.3.0=pyhd8ed1ab_0
+  - matplotlib-base=3.7.1=py39haf65ace_0
+  - matplotlib-inline=0.1.6=pyhd8ed1ab_0
+  - numpy=1.24.2=py39h16ffa76_0
+  - pandas=1.5.3=py39h2ba5b7c_0
+  - pip=23.0.1=pyhd8ed1ab_0
+  - sqlite=3.40.0=hcfcfb64_0
+  - pip:
+      - streamlit==1.21.0
+      - streamlit-folium==0.11.1
+prefix: C:\Users\Sam\anaconda3\envs\AppEnv

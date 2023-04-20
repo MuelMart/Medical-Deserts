@@ -4,8 +4,8 @@ This repository serves as the codebase for our CSE6242 final project.
 
 ## Table of Contents
 [Data Dictionary](#data-dictionary)  
-[Accessing the App (Conda)](#accessing-the-app-conda)  
-[Accessing the App (Pip)](#accessing-the-app-pip)  
+[Accessing the Demo App (Conda)](#accessing-the-demo-app-conda)  
+[Accessing the Demo App (Pip)](#accessing-the-demo-app-pip)  
 [Accessing the Full App](#accessing-the-full-app)  
 
 ## Data Dictionary

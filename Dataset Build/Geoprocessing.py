@@ -3,8 +3,8 @@ import geopandas as gpd
 import numpy as np
 import sqlite3
 import folium
-from geopy.geocoders import Nominatim
-import folium
+import re
+import streamlit as st
 import matplotlib.pyplot as plt
 
 #Pull doc location data
@@ -60,8 +60,31 @@ def execute_sql(dbpath, tract_table):
     tract_table.to_sql('TRACTS', con = conn, if_exists = 'replace')
     conn.close()
 
+#Clean and filter data by state
+def get_statedata(data, state):
+        #Get state data
+        stdata = data[data['state'] == state].drop(['geometry', 'index', 'lat', 'lon'], axis=1)
 
-#Func to create and export folium maps
+        #Clean column names
+        display = pd.DataFrame()
+        #Rename columns
+        display['Number of Clinicians'] = stdata['total_clinicians']
+        display['Median Household Income (USD)'] = stdata['MedianHouseholdIncomeE']
+        display['Median Home Price (USD)'] = stdata['MedianHomePriceE']
+        display['Income Disparity (Gini Index)'] = stdata['IncomeDisparityE']
+        display['Unemployment Rate'] = stdata['UnemploymentRateE']
+        display['Percent Uninsured Population'] = stdata['P_UninsuredE']
+        display['Percent Disabled Population'] = stdata['P_WithADisabilityE']
+        display['Percent Households with No Vehicle'] = stdata['P_NoVehicleAvailableE']
+        display['Percent Non-White Population'] = stdata['P_NonWhiteE'] 
+        display['Percent Rent Burdened Population'] = stdata['P_RentBurdenedE']
+        display['Percent Single Parent Households'] = stdata['P_SingleParentHouseholdE']
+        display['y_Pred'] = stdata['y_Pred']
+
+        return display
+
+
+#Func to create and export folium map for the number of docs within 25 km, as well as a map with GMM cluster IDs.
 def export_map(joined_data, export_path = None, state_abb = None):
 
     docs_per_tract = joined_data.copy()
@@ -84,6 +107,10 @@ def export_map(joined_data, export_path = None, state_abb = None):
     #Get thresholds
     intervals = docs_per_tract['total_clinicians'].describe(percentiles = [0.2,0.4,0.6,0.8])
     thresholds = [0,1,intervals['20%'],intervals['40%'],intervals['60%'],intervals['80%'],intervals['max']]
+
+    #Update cluster mapping
+    data['cluster'] = np.where(data['y_Pred'] == 0, "Low Vulnerability", 
+                               np.where(data['y_Pred'] == 1, "High Vulnerability", "Undefined"))
 
     #Create map from bounding box
     m = folium.Map(location = [y,x], zoom_start = 5)
@@ -108,11 +135,47 @@ def export_map(joined_data, export_path = None, state_abb = None):
     #Create tooltip
     folium.GeoJsonTooltip(fields = ['NAME', 'total_clinicians'], aliases = ['Name', 'Docs within 25km']).add_to(gj.geojson)
 
+    #Create map from bounding box
+    m2 = folium.Map(location = [y,x], zoom_start = 5)
+
+    data_json = data.to_json()
+
+    #Create chloropleth
+    gj2 = folium.Choropleth(
+        geo_data = data_json,
+        data = data.drop('geometry',axis=1),
+        columns = ['GEOID','y_Pred'],
+        key_on = 'feature.properties.GEOID',
+        fill_color = 'PRGn',
+        fill_opacity = 0.6,
+        line_opacity = 0,
+        legend_name = 'Cluster Type',
+        thresholds = [0,1],
+        nan_fill_opacity = 0,
+        highlight = True,
+        tooltip = None
+    )
+
+    #Delete legend
+    for key in gj2._children:
+        if key.startswith('color_map'):
+            del(gj2._children[key])
+
+    #We have to build a custom HTML legend for this use case, since the variables are binary.
+
+    gj2.add_to(m2)
+
     if export_path != None:
         m.save(export_path + '\{}_tracts.html'.format(state_abb))
+        m2.save(export_path + '\{}_tractClusters.html'.format(state_abb))
 
-    return m
+    #Create tooltip
+    folium.GeoJsonTooltip(fields = ['NAME', 'total_clinicians', 'cluster'], aliases = ['Name', 'Docs within 25km', 'Medical Desert Risk']).add_to(gj2.geojson)
 
+    return m,m2
+
+
+#Produce figure of state avg docs per tract to national avg docs per tract.
 def geo_avg_fig(data,geo,type = 'state'):
     #Filter for da geography of interest
     filt = data[data[type] == geo]
@@ -127,6 +190,35 @@ def geo_avg_fig(data,geo,type = 'state'):
     plt.bar(labels, [s_avg,n_avg], color = ['#4287f5','#b6bfcf'])
     plt.rc('font', family='Oswald')
     plt.xticks(weight = 'bold')
+    
+    return fig
+
+#Produce figure of variable, facetted by cluster type.
+def geo_clust_fig(data,var):
+
+    #Drop na clusters
+    df = data[np.isnan(data.y_Pred) == False]
+    #Set labels
+    labels = ['High Vulnerability','Low Vulnerability']
+    
+    #get y, drop nas
+    high_vuln = data[data['y_Pred'] == 1][var].dropna()
+    low_vuln = data[data['y_Pred'] == 0][var].dropna()
+
+    fig = plt.figure()
+    #ax = fig.add_subplot()
+    #ax.bar(df['y_Pred'], df[var], tick_label = labels)
+
+    plt.style.use('dark_background')
+    plt.bar(labels, [np.mean(high_vuln), np.mean(low_vuln)], color = ['#7aab65','#8a5eb5'])
+    plt.rc('font', family='Oswald')
+    plt.xticks(weight = 'bold')
+    plt.ylabel("Mean {}".format(var))
+
+    #If the variable is a percent
+    if re.match('^Percent', var) != None:
+        #Set the y axis on a scale of 100
+        plt.ylim(0,100)
     
     return fig
 

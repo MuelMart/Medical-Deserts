@@ -138,5 +138,5 @@ If you want to access the full app (data for every single state), please do the 
 
 ## Clustering
 To regenerate the predicted labels.
-1. Install scikit-learn by following steps on [here](https://scikit-learn.org/stable/install.html)
+1. Install scikit-learn by following steps from [install guide](https://scikit-learn.org/stable/install.html)
 2. Run all the cells in Clustering.ipynb notebook
